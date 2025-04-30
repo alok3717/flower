@@ -1,0 +1,62 @@
+from math import ceil
+from flask import Flask, render_template, request
+import importlib
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    results = {}
+    paginated_results = []
+    page = int(request.args.get("page", 1))
+    per_page = 20
+    total_pages = 0
+
+    rank = request.form.get("rank") or request.args.get("rank")
+    category_input = request.form.get("category") or request.args.get("category")
+    round_selected = request.form.get("round") or request.args.get("round")
+
+    if rank and category_input and round_selected:
+        try:
+            rank = int(rank)
+            data_module = importlib.import_module(f"data.round{round_selected}")
+            data = data_module.data
+            print(f"Loaded data for round {round_selected}")
+            keyword = "computer science"
+            for entry in data:
+                try:
+                    closing_rank = int(entry["ClosingRank"])
+                    entry_category = entry["Category"]
+                    if rank <= closing_rank and (entry_category == category_input or category_input == "Open") and (keyword.lower() in entry["ProgramName"].lower()) and entry["SeatTypeName"]=="WBJEE Seats":
+                        print(entry)
+                        print("----------")
+                        college = entry["InstituteName"]
+                        branch = entry["ProgramName"]
+
+                        if college not in results:
+                            results[college] = set()
+                        results[college].add(branch)
+                except ValueError:
+                    continue
+
+            result_items = list(results.items())
+            total_pages = ceil(len(result_items) / per_page)
+            start = (page - 1) * per_page
+            end = start + per_page
+            paginated_results = result_items[start:end]
+
+        except Exception as e:
+            print("Error:", e)
+
+    return render_template("index.html",
+        results=results,
+        paginated_results=paginated_results,
+        current_page=page,
+        total_pages=total_pages,
+        rank=rank,
+        category=category_input,
+        round_selected=round_selected
+    )
+
+if __name__ == "__main__":
+    app.run(debug=True)
