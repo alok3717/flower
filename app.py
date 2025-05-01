@@ -15,21 +15,22 @@ def index():
     rank = request.form.get("rank") or request.args.get("rank")
     category_input = request.form.get("category") or request.args.get("category")
     round_selected = request.form.get("round") or request.args.get("round")
+    branch_selected = request.form.get("branch") or request.args.get("branch")
 
-    if rank and category_input and round_selected:
+    if rank and category_input and round_selected and branch_selected:
         try:
             rank = int(rank)
             data_module = importlib.import_module(f"data.round{round_selected}")
             data = data_module.data
             print(f"Loaded data for round {round_selected}")
-            keyword = "computer science"
+            keyword = branch_selected
             for entry in data:
                 try:
                     closing_rank = int(entry["ClosingRank"])
                     entry_category = entry["Category"]
+                    entry_branch = entry["ProgramName"]
                     if rank <= closing_rank and (entry_category == category_input or category_input == "Open") and (keyword.lower() in entry["ProgramName"].lower()) and entry["SeatTypeName"]=="WBJEE Seats":
-                        print(entry)
-                        print("----------")
+                        
                         college = entry["InstituteName"]
                         branch = entry["ProgramName"]
 

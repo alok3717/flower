@@ -44,7 +44,21 @@
       flex-wrap: wrap;
       justify-content: center;
     }
+  .custom-whatsapp-btn {
+    background-color: #33b2ff;
+    color: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
 
+  .custom-youtube-btn {
+    background-color: #2b3942;
+    color: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
     .college-card:hover {
       transform: translateY(-4px);
       transition: 0.3s;
@@ -82,23 +96,27 @@
     <div class="card-custom text-center-sm">
       <div class="row align-items-center">
         <div class="col-md-3 text-center">
-          <img src="https://img.mathrubhumi.com/view/acePublic/alias/contentid/1i4i1p2z4mq6hizvonq/1/shah-rukh-khan.webp?f=3%3A2&q=0.75&w=900" alt="Profile" class="profile-image">
+          <img src="data:image/jpeg;base64,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" alt="Profile" class="profile-image">
         </div>
         <div class="col-md-6">
           <h4 class="mb-1">Anupam Biswas</h4>
-          <p class="text-muted">Jadavpur University | Backend Developer | Work on the DECENTRO | EX: Headout, GMP</p>
+          <p class="text-muted">Jadavpur University | Backend Developer   | SDE @ Decentro | EX: Headout, Optun, GMP </p>
         </div>
-        <div class="col-md-3 btn-group-custom">
-          <a href="#" class="btn btn-outline-primary">Whatsapp group</a>
-          <a href="#" class="btn btn-outline-danger">youtube channel</a>
-        </div>
+          <div class="col-md-3">
+            <div class="mb-2">
+              <a href="https://chat.whatsapp.com/K43fdaSs9TjHoPL0qCm77k" class="btn custom-whatsapp-btn w-100">Join WhatsApp for Admission Info</a>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/@codingroom1" class="btn custom-youtube-btn w-100">YouTube Channel</a>
+            </div>
+          </div>
       </div>
     </div>
 
     <!-- Simple Info Card -->
     <div class="card-custom">
       <h5>Important Notice</h5>
-      <p>This website is currently in beta mode. Some features might not work as expected. Please report bugs.</p>
+      <p>This site is just to help my younger brother and sister. I’m not a frontend developer, so don’t expect fancy stuff.it’s still in testing. If you find any issues with the content or data, feel free to reach out. The data is sourced from admissions.nic.in</p>
     </div>
 
     <!-- College Finder Form -->
@@ -129,6 +147,21 @@
             <option value="1">Round 1</option>
             <option value="2">Round 2</option>
             <option value="3">Round 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="branch">Filter by branch</label>
+          <select class="form-control" id="branch" name="branch" required>
+            <option value="all">All</option>
+            <option value="Electrical Engineering">Electrical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Biotechnology">Biotechnology</option>Food Technology
+            <option value="Food Technology">Food Technology</option>
+            <option value="Biotechnology">Biotechnology</option>
+            <option value="Computer">Computer Science Related</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Electronics Communication Engineering">Electronics Communication Engineering</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Search Colleges</button>
